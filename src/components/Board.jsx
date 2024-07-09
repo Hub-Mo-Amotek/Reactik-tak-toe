@@ -3,13 +3,21 @@ import Square from './Square'
 
 const Board = () => {
 
-    const [squares, setsquares] = useState(Array(9).fill(null));
+  const [xIsNext, setXIsNext] = useState(true)
+  const [squares, setsquares] = useState(Array(9).fill(null));
 
-    function handleClick(i) {
-        const nextSquares = squares.slice();
-        nextSquares[i] = "X";
-        setsquares(nextSquares);
+  function handleClick(i) {
+    const nextSquares = squares.slice();
+
+    if (xIsNext) {
+      nextSquares[i] = "X";
+    } else {
+      nextSquares[i] = "O";
     }
+
+    setsquares(nextSquares);
+    setXIsNext(!xIsNext);
+  }
 
 
   return (
